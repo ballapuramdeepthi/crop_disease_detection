@@ -1,0 +1,6 @@
+plantvillage dataset/
+venv/
+_pycache_/
+*.pyc
+*.h5
+*.keras
