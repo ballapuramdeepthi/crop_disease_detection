@@ -1,21 +1,26 @@
 import os
-import cv2
 import numpy as np
+from PIL import Image
 
-input_dir = "processed_images"
-output_dir = "normalized_images"
+dataset_path = "plantvillage dataset/color"
 
-os.makedirs(output_dir, exist_ok=True)
+first_class = os.listdir(dataset_path)[0]
+class_path = os.path.join(dataset_path, first_class)
 
-for image_name in os.listdir(input_dir):
-    image_path = os.path.join(input_dir, image_name)
+first_image = os.listdir(class_path)[0]
+image_path = os.path.join(class_path, first_image)
 
-    image = cv2.imread(image_path)
+img = Image.open(image_path)
+img = img.resize((224, 224))
 
-    if image is not None:
-        normalized_image = image.astype(np.float32) / 255.0
+img_array = np.array(img)
 
-        save_path = os.path.join(output_dir, image_name)
-        np.save(save_path, normalized_image)
+print("Before Normalization")
+print("Min Pixel:", img_array.min())
+print("Max Pixel:", img_array.max())
 
-print("Image normalization completed successfully.")
+normalized_img = img_array / 255.0
+
+print("\nAfter Normalization")
+print("Min Pixel:", normalized_img.min())
+print("Max Pixel:", normalized_img.max())
