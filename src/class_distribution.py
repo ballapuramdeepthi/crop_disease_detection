@@ -24,7 +24,7 @@ df = pd.DataFrame({
 print(df)
 
 plt.figure(figsize=(16,8))
-plt.bar(classes, counts)
+plt.bar(classes,counts)
 
 plt.xticks(rotation=90)
 plt.xlabel("Disease Classes")
