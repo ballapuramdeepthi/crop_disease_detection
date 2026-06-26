@@ -1,7 +1,9 @@
 import tensorflow as tf
 
+# Dataset path
 dataset_path = "plantvillage dataset/color"
 
+# Training Dataset
 train_ds = tf.keras.utils.image_dataset_from_directory(
     dataset_path,
     validation_split=0.2,
@@ -11,6 +13,7 @@ train_ds = tf.keras.utils.image_dataset_from_directory(
     batch_size=32
 )
 
+# Validation Dataset
 val_ds = tf.keras.utils.image_dataset_from_directory(
     dataset_path,
     validation_split=0.2,
@@ -23,8 +26,11 @@ val_ds = tf.keras.utils.image_dataset_from_directory(
 print("Train Dataset Created")
 print("Validation Dataset Created")
 
+# Get Class Names
 class_names = train_ds.class_names
 
 print("\nClasses:")
 for cls in class_names:
     print(cls)
+
+print(f"\nTotal Classes: {len(class_names)}")
